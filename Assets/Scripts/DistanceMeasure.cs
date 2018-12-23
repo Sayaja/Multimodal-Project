@@ -22,9 +22,12 @@ public class DistanceMeasure : MonoBehaviour {
         } else if (distance > 3.0f)
         {
             myText.text = "Get closer to feel the clothes";
-        } else if (distance < 3.0f && distance > 0.1f)
+        } else if (distance < 3.0f && distance > 0.5f)
         {
             myText.text = "Swipe over the clothes and listen";
+        } else if (distance < 0.5f)
+        {
+            myText.text = Input.acceleration.sqrMagnitude.ToString();
         }
 
     }
