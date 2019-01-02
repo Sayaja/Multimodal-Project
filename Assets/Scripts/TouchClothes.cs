@@ -5,6 +5,8 @@ using UnityEngine;
 public class TouchClothes : MonoBehaviour {
 
     public GameObject testObj;
+    GameObject cam;
+    Rigidbody camPhys;
     public AudioSource pantsSource;
     public AudioSource shirtSource;
     
@@ -14,7 +16,8 @@ public class TouchClothes : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //pantsSource = GetComponent<AudioSource>();
-        
+        cam = GameObject.Find("ARCamera");
+        camPhys = cam.GetComponent<Rigidbody>();
 
     }
 
@@ -26,9 +29,10 @@ public class TouchClothes : MonoBehaviour {
     bool inRangeTop = false;
     bool inRangeBot = false;
     
-
+    
     Vector3 accel;
-  
+    Vector3 prevAccel;
+    Vector3 dir;
         
     
 
@@ -76,9 +80,19 @@ public class TouchClothes : MonoBehaviour {
 
         if (inRangeTop==true)
         {
-            accel = Input.acceleration;
-            shirtSource.volume = 0.0f + Mathf.Pow(accel.sqrMagnitude-1,2);
-            Debug.Log(accel);
+            //Vector3 acceleration = Vector3.zero;
+            //foreach (AccelerationEvent accEvent in Input.accelerationEvents)
+            //{
+            //    acceleration += accEvent.acceleration * accEvent.deltaTime;
+            //}
+
+            Vector3 accel = Input.acceleration - prevAccel;
+           
+            
+       
+            camPhys.AddForce(accel);
+            shirtSource.volume = 0.0f + camPhys.velocity.sqrMagnitude;
+            prevAccel = Input.acceleration;
             //if (inRangeBot)
             //{
             //    pantsSource.volume = 0.5f * accel.sqrMagnitude;
@@ -99,6 +113,7 @@ public class TouchClothes : MonoBehaviour {
             
 
         }
+
 
 
         // Check for click on screen
