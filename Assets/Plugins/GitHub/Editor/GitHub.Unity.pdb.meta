@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 305b6e818055a104982596b94deddcef
+<<<<<<< HEAD
 DefaultImporter:
   externalObjects: {}
+=======
+timeCreated: 1540294768
+licenseType: Store
+DefaultImporter:
+>>>>>>> parent of 4114a47... Merge pull request #4 from Sayaja/drag_interaction
   userData: 
   assetBundleName: 
   assetBundleVariant: 
