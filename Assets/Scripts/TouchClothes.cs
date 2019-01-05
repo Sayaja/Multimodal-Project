@@ -82,9 +82,9 @@ public class TouchClothes : MonoBehaviour {
 
             camPhys.AddForce(accel, ForceMode.Impulse);
 
-            if (Mathf.Sqrt(camPhys.velocity.sqrMagnitude) > 0.01f)
+            if (Mathf.Sqrt(camPhys.velocity.sqrMagnitude) > 0.015f)
             {
-                shirtSource.volume = 0.0f + Mathf.Sqrt(camPhys.velocity.sqrMagnitude);
+                shirtSource.volume = 0.0f + Mathf.Sqrt(camPhys.velocity.sqrMagnitude) * 30;
             }
             else
             {
