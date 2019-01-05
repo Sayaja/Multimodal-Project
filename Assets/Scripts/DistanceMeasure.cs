@@ -15,16 +15,20 @@ public class DistanceMeasure : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        double distance = Vector3.Distance(ARObject.transform.position, Camera.main.transform.position);
+        Vector3 topOrigin = ARObject.transform.position + new Vector3(0, 1.2f, 0);
+        double distance = Vector3.Distance(topOrigin, Camera.main.transform.position);
         if (distance < 0.1f)
         {
-            myText.text = "Click to place the model";
+            myText.text = "Press to place the model";
+        } else if (distance > 0.1f && distance < 0.8f)
+        {
+            myText.text = "Move the phone";
         } else if (distance > 3.0f)
         {
-            myText.text = "Get closer to feel the clothes";
-        } else if (distance < 3.0f && distance > 0.1f)
+            myText.text = "Get closer to hear the clothes";
+        } else if (distance < 3.0f && distance > 0.8f)
         {
-            myText.text = "Swipe over the clothes and listen";
+            myText.text = "Swipe on the clothes";
         }
 
     }
